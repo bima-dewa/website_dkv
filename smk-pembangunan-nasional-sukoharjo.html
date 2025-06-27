@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SMK Pembangunan Nasional Sukoharjo - Jurusan Desain Komunikasi Visual</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+    :root {
+      --color-background: #ffffff;
+      --color-primary: #111827;
+      --color-secondary: #6b7280;
+      --color-accent: #000000;
+      --color-accent-hover: #444444;
+      --color-card-bg: #f9fafb;
+      --border-radius: 0.75rem;
+      --transition: 0.3s ease;
+      --max-width: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background-color: var(--color-background);
+      color: var(--color-secondary);
+      line-height: 1.6;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: var(--color-accent);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    a:hover,
+    a:focus {
+      color: var(--color-accent-hover);
+      outline: none;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background-color: var(--color-background);
+      border-bottom: 1px solid #e5e7eb;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.05);
+      z-index: 1000;
+    }
+
+    nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      user-select: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--color-secondary);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--color-accent);
+      transition: width var(--transition);
+      border-radius: 1px;
+    }
+    .nav-links a:hover::after,
+    .nav-links a:focus::after {
+      width: 100%;
+    }
+
+    main {
+      max-width: var(--max-width);
+      margin: 2rem auto 4rem;
+      flex-grow: 1;
+      padding: 0 2rem;
+      width: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding-bottom: 3rem;
+    }
+
+    .hero h1 {
+      font-weight: 800;
+      font-size: 3.5rem;
+      line-height: 1.1;
+      color: var(--color-primary);
+      max-width: 800px;
+      margin: 0 auto 1rem;
+    }
+
+    .hero p {
+      font-weight: 500;
+      font-size: 1.25rem;
+      color: var(--color-secondary);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .btn-primary {
+      background-color: var(--color-accent);
+      color: white;
+      font-weight: 700;
+      padding: 0.75rem 2rem;
+      font-size: 1.125rem;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: background-color var(--transition), transform 0.3s ease;
+      box-shadow: 0 4px 8px rgb(0 0 0 / 0.6);
+      user-select: none;
+      text-align: center;
+      display: inline-block;
+      user-select: none;
+    }
+
+    .btn-primary:hover,
+    .btn-primary:focus {
+      background-color: var(--color-accent-hover);
+      outline: none;
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgb(0 0 0 / 0.7);
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 6rem;
+    }
+
+    section h2 {
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: var(--color-primary);
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    /* About */
+    .about-text {
+      max-width: 700px;
+      margin: 0 auto;
+      color: var(--color-secondary);
+      font-size: 1.125rem;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    /* Test Section */
+    #test form {
+      max-width: 720px;
+      margin: 0 auto;
+      background-color: var(--color-card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: 0 2px 12px rgb(0 0 0 / 0.06);
+      padding: 2.5rem;
+      max-height: 80vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    #test form > div {
+      margin-bottom: 1.5rem;
+    }
+
+    #test label.question,
+    #test label.input-label {
+      font-weight: 600;
+      font-size: 1.125rem;
+      color: var(--color-primary);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .options label {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+      font-weight: 400;
+      color: var(--color-secondary);
+      user-select: none;
+      margin-bottom: 0.5rem;
+      transition: color var(--transition);
+    }
+
+    .options label:hover,
+    .options label:focus-within {
+      color: var(--color-accent);
+    }
+
+    input[type="radio"] {
+      cursor: pointer;
+      width: 18px;
+      height: 18px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      font-size: 1rem;
+      border-radius: var(--border-radius);
+      border: 1.5px solid #cbd5e1;
+      font-family: inherit;
+      color: var(--color-primary);
+      cursor: text;
+    }
+
+    input[type="text"]:focus {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 4px var(--color-accent);
+      outline: none;
+    }
+
+    #submit-btn {
+      align-self: center;
+      margin-top: 1rem;
+      width: 100%;
+      max-width: 250px;
+    }
+
+    #result {
+      max-width: 720px;
+      margin: 2rem auto 0;
+      padding: 1.5rem 2rem;
+      background-color: var(--color-card-bg);
+      border-radius: var(--border-radius);
+      box-shadow: 0 2px 10px rgb(0 0 0 / 0.05);
+      font-size: 1.25rem;
+      color: var(--color-primary);
+      text-align: center;
+      min-height: 4rem;
+      user-select:none;
+    }
+
+    /* Admin Section */
+    #admin-section {
+      max-width: 720px;
+      margin: 0 auto 6rem;
+      background: var(--color-card-bg);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      box-shadow: 0 2px 12px rgb(0 0 0 / 0.06);
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    #admin-section h3 {
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--color-primary);
+      text-align: center;
+    }
+    #admin-list {
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #d1d5db;
+      border-radius: var(--border-radius);
+    }
+    #admin-list table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1rem;
+      color: var(--color-primary);
+    }
+    #admin-list th, #admin-list td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #d1d5db;
+      text-align: left;
+    }
+    #admin-list th {
+      background-color: #e5e7eb;
+      position: sticky;
+      top: 0;
+      user-select:none;
+    }
+    #admin-list tr:hover {
+      background-color: #f3f4f6;
+    }
+    #close-admin-btn,
+    #download-csv-btn {
+      margin: 1rem auto 0;
+      max-width: 200px;
+      background-color: #ef4444;
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      transition: background-color var(--transition);
+      user-select:none;
+      display: block;
+    }
+    #close-admin-btn:hover, #close-admin-btn:focus,
+    #download-csv-btn:hover, #download-csv-btn:focus {
+      background-color: #b91c1c;
+      outline:none;
+    }
+
+    /* Contact Section */
+    .contact-info {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+      color: var(--color-secondary);
+      font-size: 1.125rem;
+    }
+
+    .contact-info p {
+      margin: 0.7rem 0;
+    }
+
+    footer {
+      background-color: #f3f4f6;
+      padding: 2rem 1rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--color-secondary);
+      user-select: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 2.25rem;
+      }
+
+      nav {
+        padding: 1rem;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      main {
+        padding: 2rem 1rem 4rem;
+      }
+
+      #test form {
+        padding: 1.5rem 1rem;
+        max-height: none;
+      }
+
+      #submit-btn, #admin-toggle-btn, #close-admin-btn, #download-csv-btn {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header aria-label="Primary navigation">
+    <nav>
+      <a href="#" class="logo" aria-label="Homepage">SMK Pembangunan Nasional Sukoharjo</a>
+      <div class="nav-links" role="menubar">
+        <a href="#about" role="menuitem" tabindex="0">Tentang</a>
+        <a href="#test" role="menuitem" tabindex="0">Tes Masuk</a>
+        <a href="#contact" role="menuitem" tabindex="0">Kontak</a>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" role="banner" aria-label="Introduction to SMK Pembangunan Nasional Sukoharjo DKV">
+      <h1>Jurusan Desain Komunikasi Visual</h1>
+      <p>SMK Pembangunan Nasional Sukoharjo - Mewujudkan Talenta Kreatif di Bidang Desain Visual dan Komunikasi.</p>
+      <a href="#test" class="btn-primary" aria-label="Mulai Tes Masuk">Mulai Tes Masuk</a>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title">Tentang Jurusan</h2>
+      <p class="about-text">
+        Jurusan Desain Komunikasi Visual (DKV) di SMK Pembangunan Nasional Sukoharjo mengajarkan konsep desain grafis, ilustrasi, multimedia, dan komunikasi visual yang efektif. Dengan fasilitas mutakhir dan staf pengajar berkompeten, kami mempersiapkan siswa menjadi profesional kreatif yang siap bersaing di industri desain.
+      </p>
+    </section>
+
+    <section id="test" aria-labelledby="test-title">
+      <h2 id="test-title">Tes Masuk Siswa Baru</h2>
+
+      <!-- Admin toggle button -->
+      <button id="admin-toggle-btn" class="btn-primary" aria-expanded="false" aria-controls="admin-section" style="margin-bottom:1.5rem; max-width: 220px; user-select:none;">
+        Tampilkan Data Admin
+      </button>
+
+      <form id="entrance-test" aria-describedby="test-instruction" novalidate>
+        <p id="test-instruction" style="max-width: 720px; margin: 0 auto 1.5rem; color: var(--color-secondary); font-style: italic; text-align: center;">
+          Masukkan data Anda dan jawab pertanyaan berikut dengan memilih satu jawaban yang paling tepat.
+        </p>
+
+        <div>
+          <label for="student-name" class="input-label">Nama Siswa yang Mengikuti Tes:</label>
+          <input type="text" id="student-name" name="studentName" placeholder="Masukkan Nama Lengkap" required aria-required="true" aria-describedby="name-desc" />
+          <p id="name-desc" style="color: var(--color-secondary); font-size: 0.9rem; margin-top: 0.25rem; max-width: 720px; margin-left:auto; margin-right:auto;">
+            Nama harus diisi sebelum mengirimkan tes.
+          </p>
+        </div>
+
+        <div>
+          <label for="student-address" class="input-label">Alamat Siswa:</label>
+          <input type="text" id="student-address" name="studentAddress" placeholder="Masukkan Alamat Lengkap" required aria-required="true" aria-describedby="address-desc" />
+          <p id="address-desc" style="color: var(--color-secondary); font-size: 0.9rem; margin-top: 0.25rem; max-width: 720px; margin-left:auto; margin-right:auto;">
+            Alamat harus diisi sebelum mengirimkan tes.
+          </p>
+        </div>
+
+        <!-- Questions -->
+        <div>
+          <label class="question" for="q1">1. Apa itu prinsip hierarki visual dalam desain?</label>
+          <div class="options">
+            <label><input type="radio" name="q1" value="1" required /> Pengaturan elemen untuk menunjukkan urutan penting</label>
+            <label><input type="radio" name="q1" value="0" /> Warna yang paling cerah pada desain</label>
+            <label><input type="radio" name="q1" value="0" /> Jumlah elemen yang banyak dalam desain</label>
+            <label><input type="radio" name="q1" value="0" /> Ukuran font yang sama di seluruh teks</label>
+          </div>
+        </div>
+
+        <div>
+          <label class="question" for="q2">2. Warna komplementer berfungsi untuk?</label>
+          <div class="options">
+            <label><input type="radio" name="q2" value="0" required /> Membuat warna menjadi netral</label>
+            <label><input type="radio" name="q2" value="1" /> Membuat kontras yang kuat di desain</label>
+            <label><input type="radio" name="q2" value="0" /> Mengurangi saturasi warna</label>
+            <label><input type="radio" name="q2" value="0" /> Memperhalus garis desain</label>
+          </div>
+        </div>
+
+        <div>
+          <label class="question" for="q3">3. Alat utama dalam software desain grafis biasanya berupa?</label>
+          <div class="options">
+            <label><input type="radio" name="q3" value="0" required /> Kamera digital</label>
+            <label><input type="radio" name="q3" value="1" /> Alat seleksi dan gambar vektor</label>
+            <label><input type="radio" name="q3" value="0" /> Printer warna</label>
+            <label><input type="radio" name="q3" value="0" /> Spreadsheet</label>
+          </div>
+        </div>
+
+        <div>
+          <label class="question" for="q4">4. Apa fungsi moodboard dalam proyek desain?</label>
+          <div class="options">
+            <label><input type="radio" name="q4" value="1" required /> Mengumpulkan inspirasi dan ide visual</label>
+            <label><input type="radio" name="q4" value="0" /> Menghitung anggaran proyek</label>
+            <label><input type="radio" name="q4" value="0" /> Menyusun laporan klien</label>
+            <label><input type="radio" name="q4" value="0" /> Mengedit video produk</label>
+          </div>
+        </div>
+
+        <div>
+          <label class="question" for="q5">5. Terbaik dalam penempatan elemen visual disebut?</label>
+          <div class="options">
+            <label><input type="radio" name="q5" value="0" required /> Distorsi</label>
+            <label><input type="radio" name="q5" value="0" /> Noise</label>
+            <label><input type="radio" name="q5" value="1" /> Komposisi</label>
+            <label><input type="radio" name="q5" value="0" /> Pixel</label>
+          </div>
+        </div>
+
+        <!-- Additional questions for brevity can be added here as before -->
+
+        <button type="submit" id="submit-btn" class="btn-primary" aria-label="Submit Tes Masuk">
+          Kirim Jawaban
+        </button>
+      </form>
+
+      <div id="result" aria-live="polite" role="region"></div>
+
+      <section id="admin-section" aria-label="Data Admin untuk mengecek score dan nama siswa">
+        <h3>Data Hasil Tes Siswa</h3>
+        <div id="admin-list" tabindex="0" aria-live="polite" aria-relevant="additions">
+          <table role="table" aria-label="Daftar nilai siswa">
+            <thead>
+              <tr>
+                <th>Nama Siswa</th>
+                <th>Alamat</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody id="admin-table-body">
+              <!-- dynamically filled -->
+            </tbody>
+          </table>
+        </div>
+        <button id="download-csv-btn" type="button" aria-label="Download Data Nilai dan Identitas Siswa">
+          Download Data CSV
+        </button>
+        <button id="close-admin-btn" type="button" aria-label="Tutup Data Admin">Tutup</button>
+      </section>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Kontak Kami</h2>
+      <div class="contact-info">
+        <p>Alamat: Jl. Slamet Riyadi No.275, Sukoharjo, Jawa Tengah, Indonesia</p>
+        <p>Telepon: (0271) 123-4567</p>
+        <p>Email: info@smkpns.sch.id</p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2024 SMK Pembangunan Nasional Sukoharjo. Semua hak cipta dilindungi.</p>
+  </footer>
+  <script>
+    const form = document.getElementById('entrance-test');
+    const resultDiv = document.getElementById('result');
+    const adminSection = document.getElementById('admin-section');
+    const adminTableBody = document.getElementById('admin-table-body');
+    const adminToggleBtn = document.getElementById('admin-toggle-btn');
+    const closeAdminBtn = document.getElementById('close-admin-btn');
+    const downloadCsvBtn = document.getElementById('download-csv-btn');
+
+    // Store submissions: array of objects {name, address, score}
+    const submissions = [];
+
+    // Form submit handler
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Validate name and address fields
+      const studentNameInput = form.elements['studentName'];
+      const studentAddressInput = form.elements['studentAddress'];
+      const studentName = studentNameInput.value.trim();
+      const studentAddress = studentAddressInput.value.trim();
+
+      if (!studentName) {
+        alert('Harap isi nama siswa sebelum mengirim tes.');
+        studentNameInput.focus();
+        return;
+      }
+      if (!studentAddress) {
+        alert('Harap isi alamat siswa sebelum mengirim tes.');
+        studentAddressInput.focus();
+        return;
+      }
+
+      const formData = new FormData(form);
+      let score = 0;
+
+      // Count total questions by counting q* name keys (skip studentName and studentAddress) dynamically
+      const totalQuestions = [...formData.keys()]
+        .filter(k => /^q\d+$/.test(k))
+        .length;
+
+      for (let i = 1; i <= totalQuestions; i++) {
+        const answer = formData.get('q' + i);
+        if (answer === '1') score++;
+      }
+
+      // Save submission
+      submissions.push({ name: studentName, address: studentAddress, score });
+
+      // Feedback message
+      let feedback = '';
+      if (score === totalQuestions) {
+        feedback = 'Nilai sempurna! Anda sangat cocok untuk jurusan ini.';
+      } else if (score >= totalQuestions * 0.8) {
+        feedback = 'Nilai sangat baik! Potensi Anda kuat di bidang Desain Komunikasi Visual.';
+      } else if (score >= totalQuestions * 0.6) {
+        feedback = 'Nilai baik, namun Anda mungkin perlu belajar lebih banyak.';
+      } else {
+        feedback = 'Nilai rendah. Kami sarankan untuk mempelajari dasar-dasar desain lebih lanjut.';
+      }
+
+      resultDiv.textContent = `Hasil Tes: ${score} dari ${totalQuestions}. ${feedback} (Nama: ${studentName})`;
+      resultDiv.scrollIntoView({ behavior: 'smooth' });
+
+      // Reset form except the name and address to facilitate multiple tests if needed
+      form.reset();
+      studentNameInput.value = studentName;
+      studentAddressInput.value = studentAddress;
+    });
+
+    // Toggle admin section display
+    adminToggleBtn.addEventListener('click', () => {
+      if (adminSection.style.display === 'flex') {
+        adminSection.style.display = 'none';
+        adminToggleBtn.setAttribute('aria-expanded', 'false');
+        adminToggleBtn.textContent = 'Tampilkan Data Admin';
+      } else {
+        renderAdminTable();
+        adminSection.style.display = 'flex';
+        adminToggleBtn.setAttribute('aria-expanded', 'true');
+        adminToggleBtn.textContent = 'Sembunyikan Data Admin';
+        adminSection.focus();
+      }
+    });
+
+    closeAdminBtn.addEventListener('click', () => {
+      adminSection.style.display = 'none';
+      adminToggleBtn.setAttribute('aria-expanded', 'false');
+      adminToggleBtn.textContent = 'Tampilkan Data Admin';
+      adminToggleBtn.focus();
+    });
+
+    // Render admin submissions table
+    function renderAdminTable() {
+      adminTableBody.innerHTML = '';
+      if (submissions.length === 0) {
+        const tr = document.createElement('tr');
+        const td = document.createElement('td');
+        td.colSpan = 3;
+        td.textContent = 'Belum ada data hasil tes.';
+        td.style.textAlign = 'center';
+        tr.appendChild(td);
+        adminTableBody.appendChild(tr);
+        return;
+      }
+      for (const entry of submissions) {
+        const tr = document.createElement('tr');
+        const tdName = document.createElement('td');
+        tdName.textContent = entry.name;
+        const tdAddress = document.createElement('td');
+        tdAddress.textContent = entry.address;
+        const tdScore = document.createElement('td');
+        tdScore.textContent = entry.score;
+        tr.appendChild(tdName);
+        tr.appendChild(tdAddress);
+        tr.appendChild(tdScore);
+        adminTableBody.appendChild(tr);
+      }
+    }
+
+    // Download CSV file helper
+    function downloadCsv() {
+      if (submissions.length === 0) {
+        alert('Belum ada data untuk diunduh.');
+        return;
+      }
+      const header = ['Nama Siswa', 'Alamat', 'Score'];
+      const csvRows = [header.join(',')];
+
+      for (const entry of submissions) {
+        // Escape any commas or quotes in fields for CSV safety
+        const row = [
+          `"${entry.name.replace(/"/g, '""')}"`,
+          `"${entry.address.replace(/"/g, '""')}"`,
+          entry.score
+        ];
+        csvRows.push(row.join(','));
+      }
+
+      const csvString = csvRows.join('\n');
+      const blob = new Blob([csvString], {type: 'text/csv'});
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'hasil_tes_siswa.csv';
+      document.body.appendChild(a);
+      a.click();
+
+      setTimeout(() => {
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, 0);
+    }
+
+    downloadCsvBtn.addEventListener('click', downloadCsv);
+  </script>
+</body>
+</html>
+
