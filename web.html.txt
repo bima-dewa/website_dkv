@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Website Sekolah</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+        :root {
+            --color-background: #ffffff;
+            --color-primary: #111827;
+            --color-secondary: #6b7280;
+            --color-accent: #2563eb;
+            --color-accent-hover: #1e40af;
+            --color-card-bg: #f9fafb;
+            --border-radius: 0.75rem;
+            --transition: 0.3s ease;
+            --max-width: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background-color: var(--color-background);
+            color: var(--color-secondary);
+            line-height: 1.6;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            color: var(--color-accent);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+        a:hover,
+        a:focus {
+            color: var(--color-accent-hover);
+            outline: none;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background-color: var(--color-background);
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 2px 8px rgb(0 0 0 / 0.05);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            user-select: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--color-secondary);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-accent);
+            transition: width var(--transition);
+            border-radius: 1px;
+        }
+        .nav-links a:hover::after,
+        .nav-links a:focus::after {
+            width: 100%;
+        }
+
+        main {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 3rem 2rem 6rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding-top: 4rem;
+            padding-bottom: 5rem;
+        }
+
+        .hero h1 {
+            font-weight: 800;
+            font-size: 3.5rem;
+            line-height: 1.1;
+            color: var(--color-primary);
+            max-width: 800px;
+            margin: 0 auto 1rem;
+        }
+
+        .hero p {
+            font-weight: 500;
+            font-size: 1.25rem;
+            color: var(--color-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: white;
+            font-weight: 700;
+            padding: 0.75rem 2rem;
+            font-size: 1.125rem;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: background-color var(--transition), transform 0.3s ease;
+            box-shadow: 0 4px 8px rgb(37 99 235 / 0.6);
+            user-select: none;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background-color: var(--color-accent-hover);
+            outline: none;
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgb(29 78 216 / 0.7);
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 6rem;
+        }
+
+        section h2 {
+            font-weight: 700;
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* About */
+        .about-text {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--color-secondary);
+            font-size: 1.125rem;
+            line-height: 1.7;
+            text-align: center;
+        }
+
+        /* Programs/Departments */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+
+        .program-card {
+            background-color: var(--color-card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgb(0 0 0 / 0.05);
+            color: var(--color-primary);
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow var(--transition), transform var(--transition);
+            cursor: default;
+            user-select: none;
+        }
+
+        .program-card:hover,
+        .program-card:focus-within {
+            box-shadow: 0 6px 16px rgb(0 0 0 / 0.12);
+            transform: translateY(-5px);
+        }
+
+        .program-card h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .program-card p {
+            margin: 0;
+            font-weight: 400;
+            color: var(--color-secondary);
+            flex-grow: 1;
+        }
+
+        /* News Section */
+        .news-list {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .news-item {
+            background-color: var(--color-card-bg);
+            border-radius: var(--border-radius);
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 8px rgb(0 0 0 / 0.04);
+            transition: background-color 0.3s ease;
+            color: var(--color-primary);
+        }
+
+        .news-item:hover {
+            background-color: #e0e7ff;
+        }
+
+        .news-item h4 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+
+        .news-item time {
+            display: block;
+            font-size: 0.875rem;
+            color: var(--color-secondary);
+            margin-top: 0.25rem;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            color: var(--color-secondary);
+            font-size: 1.125rem;
+        }
+
+        .contact-info p {
+            margin: 0.5rem 0;
+        }
+
+        footer {
+            background-color: #f3f4f6;
+            padding: 2rem 1rem;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--color-secondary);
+            user-select: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            main {
+                padding: 2rem 1rem 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header aria-label="Primary navigation">
+        <nav>
+            <a href="#" class="logo" aria-label="Homepage">Sekolah Ku</a>
+            <div class="nav-links" role="menubar">
+                <a href="#about" role="menuitem" tabindex="0">Tentang Kami</a>
+                <a href="#programs" role="menuitem" tabindex="0">Program</a>
+                <a href="#news" role="menuitem" tabindex="0">Berita</a>
+                <a href="#contact" role="menuitem" tabindex="0">Kontak</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="hero" role="banner" aria-label="Sekolah Ku introduction">
+            <h1>Mewujudkan Masa Depan Gemilang</h1>
+            <p>Mari bergabung dengan Sekolah Ku, tempat pendidikan berkualitas dan pengembangan karakter.</p>
+            <button class="btn-primary" aria-label="Daftar Sekarang">Daftar Sekarang</button>
+        </section>
+
+        <section id="about" aria-labelledby="about-title">
+            <h2 id="about-title">Tentang Kami</h2>
+            <p class="about-text">Sekolah Ku adalah institusi pendidikan yang berdedikasi menciptakan lingkungan belajar yang inspiratif, inovatif, dan inklusif. Dengan tenaga pendidik profesional dan fasilitas modern, kami mendukung setiap siswa meraih potensi terbaiknya.</p>
+        </section>
+
+        <section id="programs" aria-labelledby="programs-title">
+            <h2 id="programs-title">Program Studi</h2>
+            <div class="programs-grid">
+                <article class="program-card" tabindex="0" aria-labelledby="program1-title">
+                    <h3 id="program1-title">Teknologi Informasi</h3>
+                    <p>Mempelajari pengembangan perangkat lunak, jaringan komputer, dan keamanan siber dengan kurikulum terkini dan praktik langsung.</p>
+                </article>
+                <article class="program-card" tabindex="0" aria-labelledby="program2-title">
+                    <h3 id="program2-title">Bahasa dan Sastra</h3>
+                    <p>Mengembangkan kemampuan berbahasa, menulis kreatif, dan apresiasi sastra dari berbagai budaya dan era.</p>
+                </article>
+                <article class="program-card" tabindex="0" aria-labelledby="program3-title">
+                    <h3 id="program3-title">Ilmu Pengetahuan Alam</h3>
+                    <p>Eksplorasi sains melalui laboratorium yang lengkap dan kegiatan penelitian inovatif.</p>
+                </article>
+                <article class="program-card" tabindex="0" aria-labelledby="program4-title">
+                    <h3 id="program4-title">Seni dan Budaya</h3>
+                    <p>Membina kreativitas dan apresiasi seni tradisional serta modern melalui berbagai kegiatan ekstrakurikuler.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="news" aria-labelledby="news-title">
+            <h2 id="news-title">Berita Terbaru</h2>
+            <div class="news-list" role="list">
+                <article class="news-item" role="listitem" tabindex="0">
+                    <h4>Pengumuman Libur Nasional</h4>
+                    <time datetime="2024-06-01">1 Juni 2024</time>
+                    <p>Sekolah akan libur selama Hari Raya Idul Fitri mulai tanggal 5 hingga 10 Juni 2024.</p>
+                </article>
+                <article class="news-item" role="listitem" tabindex="0">
+                    <h4>Pendaftaran Siswa Baru Dibuka</h4>
+                    <time datetime="2024-05-15">15 Mei 2024</time>
+                    <p>Pendaftaran siswa baru untuk tahun ajaran 2024/2025 telah dibuka secara online melalui website resmi sekolah.</p>
+                </article>
+                <article class="news-item" role="listitem" tabindex="0">
+                    <h4>Kegiatan Ekstrakurikuler Baru</h4>
+                    <time datetime="2024-05-01">1 Mei 2024</time>
+                    <p>Mulai bulan ini tersedia klub musik dan teater bagi siswa yang berminat mengembangkan bakat seni.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact" aria-labelledby="contact-title">
+            <h2 id="contact-title">Kontak Kami</h2>
+            <div class="contact-info">
+                <p>Alamat: Jl. Pendidikan No.88, Jakarta, Indonesia</p>
+                <p>Telepon: (021) 555-1234</p>
+                <p>Email: info@sekolahku.sch.id</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Sekolah Ku. Semua hak cipta dilindungi.</p>
+    </footer>
+</body>
+</html>
+
